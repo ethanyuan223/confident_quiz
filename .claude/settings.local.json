@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Rename-Item \"C:\\\\Users\\\\ethan\\\\OneDrive\\\\Documents\\\\GitHub\\\\confident_quiz\\\\confidence-quiz_3.html\" \"index.html\")"
+    ]
+  }
+}

@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Social Confidence Quiz — The Confidence Blueprint</title>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TBFWYDM1QS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TBFWYDM1QS');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -280,6 +288,7 @@ let answers = new Array(8).fill(null);
 const keys = ['A','B','C','D'];
 
 function startQuiz() {
+  gtag('event', 'quiz_start');
   document.getElementById('screen-landing').style.display='none';
   document.getElementById('screen-quiz').style.display='block';
   render();
@@ -327,6 +336,12 @@ function showResult() {
   const total = Object.values(dimScores).reduce((a,b)=>a+b,0);
   const tierIdx = totalToTierIdx(total);
   const tier = tiers[tierIdx];
+
+  gtag('event', 'quiz_complete', {
+    tier_name: tier.name,
+    tier_index: tierIdx + 1,
+    total_score: total
+  });
 
   document.getElementById('screen-quiz').style.display='none';
   document.getElementById('screen-result').style.display='block';
